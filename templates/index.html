@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tableau de bord</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<div class="particles" id="particles"></div>
+
+<header class="header">
+  <div class="logo-title">MonSite</div>
+  <button class="nav-toggle" onclick="toggleNav()"><i class="fas fa-bars"></i></button>
+
+  <div class="nav" id="navMenu">
+    <span class="active" onclick="loadSection('accueil', this)">
+      <i class="fas fa-home"></i> Accueil
+    </span>
+    <span onclick="loadSection('Resultats', this)">
+      <i class="fas fa-clipboard-list"></i> Resultats
+    </span>
+    <span onclick="loadSection('meilleurs', this)">
+      <i class="fas fa-trophy"></i> Meilleurs
+    </span>
+    <span onclick="loadSection('statistiques', this)">
+      <i class="fas fa-chart-bar"></i> Statistiques
+    </span>
+  </div>
+
+  <div class="user-controls" id="usrctrl" style="display: none;">
+    <div class="user-info">
+      <i class="fas fa-user-circle"></i>
+      <span id="username">{{ username or "" }}</span>
+    </div>
+   <button class="logout-btn" onclick="window.location.href='/logout'"  id="deconnexion">
+      <i class="fas fa-sign-out-alt"></i> Déconnexion
+    </button>
+  </div>
+</header>
+
+<main class="body">
+  <div id="mainContent">
+
+  </div>
+</main>
+
+<footer>
+  <p>&copy; 2025 MonSite. Tous droits réservés.</p>
+  <div class="footer-links">
+    <a href="mailto:contact@monsite.com" title="Email">
+      <i class="fas fa-envelope"></i>
+    </a>
+    <a href="#" title="Facebook">
+      <i class="fab fa-facebook"></i>
+    </a>
+    <a href="#" title="WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="#" title="LinkedIn">
+      <i class="fab fa-linkedin"></i>
+    </a>
+  </div>
+</footer>
+<script>
+  let username = document.getElementById("username").textContent.trim()
+  if(username !== "" ){
+    document.getElementById("usrctrl").style.display = "flex";
+  }
+</script>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+</html>
